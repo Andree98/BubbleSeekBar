@@ -578,7 +578,9 @@ public class BubbleSeekBar extends View {
                     mPaint.setColor(x_ <= junction ? mSecondTrackColor : mTrackColor);
                 }
                 // sectionMark
-                canvas.drawCircle(x_, yTop, r, mPaint);
+                if (i != 0 && i != 2 && i != 4&& i != mSectionCount) {
+                    canvas.drawCircle(x_, yTop, r, mPaint);
+                }
 
                 // sectionText belows section
                 if (isShowTextBelowSectionMark) {
