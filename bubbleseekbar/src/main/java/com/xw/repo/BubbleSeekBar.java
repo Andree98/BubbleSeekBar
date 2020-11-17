@@ -369,7 +369,7 @@ public class BubbleSeekBar extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        int height = mThumbRadiusOnDragging * 2; // 默认高度为拖动时thumb圆的直径
+        int height = 26 * 2; // 默认高度为拖动时thumb圆的直径
         if (isShowThumbText) {
             mPaint.setTextSize(mThumbTextSize);
             mPaint.getTextBounds("j", 0, 1, mRectText); // j is the highest of all letters and numbers
@@ -378,13 +378,13 @@ public class BubbleSeekBar extends View {
         if (isShowSectionText && mSectionTextPosition >= TextPosition.BOTTOM_SIDES) { // 如果Section值在track之下显示，比较取较大值
             mPaint.setTextSize(mSectionTextSize);
             mPaint.getTextBounds("j", 0, 1, mRectText);
-            height = Math.max(height, mThumbRadiusOnDragging * 2 + mRectText.height());
+            height = Math.max(height, 26 * 2 + mRectText.height());
         }
         height += mTextSpace * 2;
         setMeasuredDimension(resolveSize(dp2px(180), widthMeasureSpec), height);
 
-        mLeft = getPaddingLeft() + mThumbRadiusOnDragging;
-        mRight = getMeasuredWidth() - getPaddingRight() - mThumbRadiusOnDragging;
+        mLeft = getPaddingLeft() + 26;
+        mRight = getMeasuredWidth() - getPaddingRight() - 26;
 
         if (isShowSectionText) {
             mPaint.setTextSize(mSectionTextSize);
@@ -400,12 +400,12 @@ public class BubbleSeekBar extends View {
             } else if (mSectionTextPosition >= TextPosition.BOTTOM_SIDES) {
                 String text = mSectionTextArray.get(0);
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
-                float max = Math.max(mThumbRadiusOnDragging, mRectText.width() / 2f);
+                float max = Math.max(26, mRectText.width() / 2f);
                 mLeft = getPaddingLeft() + max + mTextSpace;
 
                 text = mSectionTextArray.get(mSectionCount);
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
-                max = Math.max(mThumbRadiusOnDragging, mRectText.width() / 2f);
+                max = Math.max(26, mRectText.width() / 2f);
                 mRight = getMeasuredWidth() - getPaddingRight() - max - mTextSpace;
             }
         } else if (isShowThumbText && mSectionTextPosition == NONE) {
@@ -413,12 +413,12 @@ public class BubbleSeekBar extends View {
 
             String text = mSectionTextArray.get(0);
             mPaint.getTextBounds(text, 0, text.length(), mRectText);
-            float max = Math.max(mThumbRadiusOnDragging, mRectText.width() / 2f);
+            float max = Math.max(26, mRectText.width() / 2f);
             mLeft = getPaddingLeft() + max + mTextSpace;
 
             text = mSectionTextArray.get(mSectionCount);
             mPaint.getTextBounds(text, 0, text.length(), mRectText);
-            max = Math.max(mThumbRadiusOnDragging, mRectText.width() / 2f);
+            max = Math.max(26, mRectText.width() / 2f);
             mRight = getMeasuredWidth() - getPaddingRight() - max - mTextSpace;
         }
 
@@ -495,7 +495,7 @@ public class BubbleSeekBar extends View {
 
         float xLeft = getPaddingLeft();
         float xRight = getMeasuredWidth() - getPaddingRight();
-        float yTop = getPaddingTop() + mThumbRadiusOnDragging;
+        float yTop = getPaddingTop() + 26;
 
         // draw sectionText SIDES or BOTTOM_SIDES
         if (isShowSectionText) {
@@ -517,7 +517,7 @@ public class BubbleSeekBar extends View {
                 xRight -= (mRectText.width() + mTextSpace);
 
             } else if (mSectionTextPosition >= TextPosition.BOTTOM_SIDES) {
-                float y_ = yTop + mThumbRadiusOnDragging + mTextSpace;
+                float y_ = yTop + 26 + mTextSpace;
 
                 String text = mSectionTextArray.get(0);
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
@@ -540,8 +540,8 @@ public class BubbleSeekBar extends View {
         }
 
         if ((!isShowSectionText && !isShowThumbText) || mSectionTextPosition == TextPosition.SIDES) {
-            xLeft += mThumbRadiusOnDragging;
-            xRight -= mThumbRadiusOnDragging;
+            xLeft += 26;
+            xRight -= 26;
         }
 
         boolean isShowTextBelowSectionMark = isShowSectionText && mSectionTextPosition ==
@@ -553,8 +553,8 @@ public class BubbleSeekBar extends View {
             mPaint.getTextBounds("0123456789", 0, "0123456789".length(), mRectText); // compute solid height
 
             float x_;
-            float y_ = yTop + mRectText.height() + mThumbRadiusOnDragging + mTextSpace;
-            float r = (mThumbRadiusOnDragging - dp2px(2)) / 2f;
+            float y_ = yTop + mRectText.height() + 26 + mTextSpace;
+            float r = (26 - dp2px(2)) / 2f;
             float junction; // where secondTrack meets firstTrack
             if (isRtl) {
                 junction = mRight - mTrackLength / mDelta * Math.abs(mProgress - mMin);
@@ -573,7 +573,6 @@ public class BubbleSeekBar extends View {
                 if (i != 0 && i != 2 && i != 4&& i != mSectionCount) {
                     canvas.drawCircle(x_, yTop, r, mPaint);
                 }
-
                 // sectionText belows section
                 if (isShowTextBelowSectionMark) {
                     mPaint.setColor(mSectionTextColor);
@@ -597,7 +596,7 @@ public class BubbleSeekBar extends View {
             mPaint.setColor(mThumbTextColor);
             mPaint.setTextSize(mThumbTextSize);
             mPaint.getTextBounds("0123456789", 0, "0123456789".length(), mRectText); // compute solid height
-            float y_ = yTop + mRectText.height() + mThumbRadiusOnDragging + mTextSpace;
+            float y_ = yTop + mRectText.height() + 26 + mTextSpace;
 
             if (isFloatType || (isShowProgressInFloat && mSectionTextPosition == TextPosition.BOTTOM_SIDES &&
                     mProgress != mMin && mProgress != mMax)) {
@@ -627,7 +626,7 @@ public class BubbleSeekBar extends View {
 
         // draw thumb
         mPaint.setColor(mThumbColor);
-        canvas.drawCircle(mThumbCenterX, yTop, isThumbOnDragging ? mThumbRadiusOnDragging : mThumbRadius, mPaint);
+        canvas.drawCircle(mThumbCenterX, yTop, isThumbOnDragging ? 26 : mThumbRadius, mPaint);
     }
 
     @Override
