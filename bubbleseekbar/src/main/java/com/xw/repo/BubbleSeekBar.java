@@ -147,10 +147,8 @@ public class BubbleSeekBar extends View {
         mTrackSize = a.getDimensionPixelSize(R.styleable.BubbleSeekBar_bsb_track_size, dp2px(2));
         mSecondTrackSize = a.getDimensionPixelSize(R.styleable.BubbleSeekBar_bsb_second_track_size,
                 mTrackSize + dp2px(2));
-        mThumbRadius = a.getDimensionPixelSize(R.styleable.BubbleSeekBar_bsb_thumb_radius,
-                mSecondTrackSize + dp2px(2));
-        mThumbRadiusOnDragging = a.getDimensionPixelSize(R.styleable.BubbleSeekBar_bsb_thumb_radius_on_dragging,
-                mSecondTrackSize * 2);
+        mThumbRadius = 6;
+        mThumbRadiusOnDragging = 6;
         mSectionCount = a.getInteger(R.styleable.BubbleSeekBar_bsb_section_count, 10);
         mTrackColor = a.getColor(R.styleable.BubbleSeekBar_bsb_track_color,
                 ContextCompat.getColor(context, R.color.colorPrimary));
@@ -249,12 +247,6 @@ public class BubbleSeekBar extends View {
         }
         if (mSecondTrackSize < mTrackSize) {
             mSecondTrackSize = mTrackSize + dp2px(2);
-        }
-        if (mThumbRadius <= mSecondTrackSize) {
-            mThumbRadius = mSecondTrackSize + dp2px(2);
-        }
-        if (mThumbRadiusOnDragging <= mSecondTrackSize) {
-            mThumbRadiusOnDragging = mSecondTrackSize * 2;
         }
         if (mSectionCount <= 0) {
             mSectionCount = 10;
